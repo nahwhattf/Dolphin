@@ -36,8 +36,10 @@ jobs:
         run: |
           cd dolphin
           mkdir build && cd build
-          cmake ..
+          cmake .. -DLINUX_LOCAL_DEV=true
           make -j$(nproc)
+          cp -r ../Data/Sys/ Binaries/
+          touch Binaries/portable.txt
 
       - name: Upload Dolphin binary as artifact
         uses: actions/upload-artifact@v2
