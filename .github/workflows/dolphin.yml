@@ -44,6 +44,8 @@ jobs:
           cd dolphin/build/Binaries
           mkdir lib
           ldd ./dolphin-emu | awk 'NF == 4 { system("cp " $3 " lib") }'
+          tar czf lib.tar.gz ./lib
+          rm -rf ./lib
 
       - name: Upload Dolphin binary as artifact
         uses: actions/upload-artifact@v2
